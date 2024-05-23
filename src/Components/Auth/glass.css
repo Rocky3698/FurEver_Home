@@ -1,0 +1,4 @@
+.Glass{
+    background-color: rgba(14, 10, 32, 0.75);
+    backdrop-filter: blur(100px) staturate(150%);
+}
