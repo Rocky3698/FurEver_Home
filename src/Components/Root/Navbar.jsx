@@ -1,10 +1,11 @@
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { LuSettings2, LuLogOut, LuLogIn } from "react-icons/lu";
 import { IoMdNotifications } from "react-icons/io";
-import { FaSearch, FaSignInAlt } from "react-icons/fa";
+import { FaSearch, FaSignInAlt,FaBars } from "react-icons/fa";
 import { logout } from '../../API/Logout';
 import { AiFillHome } from "react-icons/ai";
 import { FaPeopleRoof } from "react-icons/fa6";
+import { Link as ScrollLink } from 'react-scroll';
 import { FaCat } from "react-icons/fa";
 import { useState, useEffect } from "react";
 import { getUser } from '../../API/profile';
@@ -40,9 +41,72 @@ const Navbar = () => {
         }
     }, [loggedIn]);
     const NavLinks = <>
-        <li><NavLink className={({ isActive }) => isActive ? 'underline underline-offset-8 text-dark font-semibold pb-3' : 'text-white'} to="/">Services</NavLink></li>
-        <li><NavLink className={({ isActive }) => isActive ? 'underline underline-offset-8 font-semibold text-dark pb-3' : 'text-dark font-semibold hover:text-blue-500'} to="/shelters">Populer Shelters</NavLink></li>
-        <li><NavLink className={({ isActive }) => isActive ? 'underline underline-offset-8 font-semibold text-dark pb-3' : 'text-dark font-semibold hover:text-orange-300'} to="/reviews">Adopters Reviews</NavLink></li>
+        <li>
+            <ScrollLink
+                activeClass="underline underline-offset-8 font-semibold text-dark pb-3"
+                className="text-dark font-semibold hover:opacity-65 cursor-pointer"
+                to="home"
+                spy={true}
+                smooth={true}
+                offset={-70}
+                duration={500}
+            >
+                Home
+            </ScrollLink>
+        </li>
+
+        <li>
+            <ScrollLink
+                activeClass="underline underline-offset-8 font-semibold text-dark pb-3"
+                className="text-dark font-semibold hover:opacity-65 cursor-pointer"
+                to="services"
+                spy={true}
+                smooth={true}
+                offset={-70}
+                duration={500}
+            >
+                Features
+            </ScrollLink>
+        </li>
+        <li>
+            <ScrollLink
+                activeClass="underline underline-offset-8 font-semibold text-dark pb-3"
+                className="text-dark font-semibold hover:opacity-65 cursor-pointer"
+                to="pricing"
+                spy={true}
+                smooth={true}
+                offset={-70}
+                duration={500}
+            >
+                Pricing
+            </ScrollLink>
+        </li>
+        <li>
+            <ScrollLink
+                activeClass="underline underline-offset-8 font-semibold text-dark pb-3"
+                className="text-dark font-semibold hover:opacity-65 cursor-pointer"
+                to="contact"
+                spy={true}
+                smooth={true}
+                offset={-70}
+                duration={500}
+            >
+                Contact
+            </ScrollLink>
+        </li>
+        <li>
+            <ScrollLink
+                activeClass="underline underline-offset-8 font-semibold text-dark pb-3"
+                className="text-dark font-semibold hover:opacity-65 cursor-pointer"
+                to="about"
+                spy={true}
+                smooth={true}
+                offset={-70}
+                duration={500}
+            >
+                About Us
+            </ScrollLink>
+        </li>
     </>;
     const AdopterLinks = <>
         <NavLink className={({ isActive }) => isActive ? 'underline underline-offset-8 hover:text-accent text-accent' : 'text-slate-500 hover:text-accent'} to="/adopter"><div className="flex items-center text-lg"> <AiFillHome className="me-2"></AiFillHome> For You</div> </NavLink>
@@ -55,23 +119,28 @@ const Navbar = () => {
         <NavLink className={({ isActive }) => isActive ? 'underline underline-offset-8 hover:text-accent text-accent' : 'text-slate-500 hover:text-accent'} to="/"><div className="flex items-center text-lg"> <FaPeopleRoof className="me-2"></FaPeopleRoof> Comunity</div> </NavLink>
     </>;
     return (
-        <div className=' border-b mb-5'>
+        <div className=' border-b border-black'>
             <div className="navbar justify-between w-5/6 mx-auto">
                 <div >
                     <Link to='/' className="btn btn-ghost text-2xl text-black">
                         <figure><img className='w-10 rounded-lg' src="/logo.png" alt="" /></figure>
                         FurEver Home
                     </Link>
-
+                    <div className="dropdown dropdown-left md:hidden">
+                        <div tabIndex={0} role="button" className=" m-1"><FaBars></FaBars></div>
+                        <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-28">
+                            {NavLinks}
+                        </ul>
+                    </div>
                 </div>
-                <div className=''>
+                <div className='md:block hidden'>
                     {
                         <div className='flex items-center gap-24'>
                             <ul className='flex gap-5 w-fit'>
                                 {adopter ? AdopterLinks : (shelter ? ShelterLinks : NavLinks)}
                             </ul>
                             <div className='w-fit'>
-                                <label className="border py-[10px] px-2 rounded-md flex items-center gap-2 w-96 group">
+                                <label className="border-black border py-[10px] px-2 rounded-md flex items-center gap-2 w-96 group">
                                     <input type="text" className="grow bg-transparent outline-none focus:outline-none " placeholder="Search pets..." />
                                     <FaSearch className='group-hover:text-accent'></FaSearch>
                                 </label>
@@ -108,9 +177,11 @@ const Navbar = () => {
                                 <LuLogOut onClick={handleLogout} className="cursor-pointer hover:text-red-500"></LuLogOut>
                                 <small className="hidden absolute ml-6  text-xs text-white group-hover:block font-bold">Logout</small>
                             </div>
-                        </div> : <div className='flex gap-3'>
+                        </div> : <div className='hidden md:block'>
+                        <div className='flex gap-3 '>
                             <Link to='/registration' className='btn btn-outline'> <FaSignInAlt></FaSignInAlt> Join Now</Link>
                             <Link to='/registration' className='btn btn-neutral '> <LuLogIn></LuLogIn> Login</Link>
+                        </div>
                         </div>
                     }
                 </div>

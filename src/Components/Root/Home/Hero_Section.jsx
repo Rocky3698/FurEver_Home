@@ -10,9 +10,9 @@ const Hero_Section = () => {
                     <img src="/logo.png" className="w-12 rounded-md" alt="" />
                     <h2 className="text-2xl text-black font-semibold">FurEver Home</h2>
                 </div>
-                <h2 className="text-5xl">Find Your Perfect Pet Companion</h2>
-                <h3 className="text-2xl">Bridging the Gap Between Pets and Loving Families</h3>
-                <p className="text-pretty">FurEver Home is your trusted platform for pet adoption, bringing together animal shelters and pet enthusiasts to find forever homes for pets in need. Explore detailed pet profiles, manage shelter information, and submit adoption requests—all through a secure, user-friendly interface designed with love for our furry friends. Join us in making a difference, one adoption at a time.</p>
+                <h2 className="md:text-5xl text-2xl">Find Your Perfect Pet Companion</h2>
+                <h3 className="md:text-2xl">Bridging the Gap Between Pets and Loving Families</h3>
+                <p className="text-pretty md:block hidden">FurEver Home is your trusted platform for pet adoption, bringing together animal shelters and pet enthusiasts to find forever homes for pets in need. Explore detailed pet profiles, manage shelter information, and submit adoption requests—all through a secure, user-friendly interface designed with love for our furry friends. Join us in making a difference, one adoption at a time.</p>
                 <div className='flex gap-3 mt-5 mx-auto w-52 '>
                     {
                         loggedin ? <Link to='/adopter' className="btn btn-wide btn-outline">Adopt Now</Link> : <div className="flex gap-5">
